@@ -1,0 +1,40 @@
+name: Release
+
+# Pushing a version tag (v1.2.3) publishes its GitHub release, once the tests pass and the tag matches the
+# plugin.json of the HUD and of both sources, which are versioned with it. The notes are that version's section of
+# CHANGELOG.md.
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install -g @anthropic-ai/claude-code
+      - run: claude plugin test .
+      - run: claude plugin validate .
+      - run: claude plugin validate sources/hud-git
+      - run: claude plugin validate sources/hud-ci
+      - run: claude plugin validate examples/source-template
+      - name: The tag names the version of the HUD and of both sources
+        run: |
+          for p in . sources/hud-git sources/hud-ci; do
+            v="$(node -p "require('./$p/.claude-plugin/plugin.json').version")"
+            test "v$v" = "$GITHUB_REF_NAME" || { echo "$p/.claude-plugin/plugin.json is $v, not ${GITHUB_REF_NAME#v}"; exit 1; }
+          done
+      - name: Notes from CHANGELOG.md
+        run: |
+          awk -v head="## ${GITHUB_REF_NAME#v}" '$0 == head { on = 1; next } /^## / && on { exit } on' CHANGELOG.md > notes.md
+          grep -q . notes.md
+      - run: gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file notes.md --verify-tag
+        env:
+          GH_TOKEN: ${{ github.token }}

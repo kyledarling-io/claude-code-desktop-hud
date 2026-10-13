@@ -1,0 +1,22 @@
+{
+  "name": "kyle-darling",
+  "owner": { "name": "Kyle Darling", "url": "https://github.com/kyledarling-io" },
+  "description": "Claude Code Desktop mods by Kyle Darling",
+  "plugins": [
+    {
+      "name": "hud",
+      "source": "./",
+      "description": "A live task HUD for Claude Code Desktop: a strip above the prompt while Claude works, with a full dashboard one click away."
+    },
+    {
+      "name": "hud-git",
+      "source": "./sources/hud-git",
+      "description": "A source for the HUD: the session's git branch, with files changed and how far ahead or behind. Needs the hud plugin."
+    },
+    {
+      "name": "hud-ci",
+      "source": "./sources/hud-ci",
+      "description": "A source for the HUD: whether your branch's GitHub Actions run is running, passed or failed after you push. Needs the hud plugin and a signed-in gh."
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{ "name": "probe-platform", "version": "0.1.0", "description": "Throwaway probe for the HUD: turn, subagent, permission, compaction and task-list events; delete after reading" }

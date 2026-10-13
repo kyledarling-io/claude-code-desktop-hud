@@ -1,0 +1,12 @@
+{
+  "name": "hud-git",
+  "displayName": "HUD source: git",
+  "version": "2.0.0",
+  "description": "Shows the session's git branch in the HUD, with how many files changed and how far it is ahead of or behind its upstream. Needs the HUD plugin.",
+  "author": { "name": "Kyle Darling", "url": "https://github.com/kyledarling-io" },
+  "homepage": "https://github.com/kyledarling-io/claude-code-desktop-hud/tree/main/sources/hud-git",
+  "repository": "https://github.com/kyledarling-io/claude-code-desktop-hud",
+  "license": "MIT",
+  "keywords": ["hud", "git", "branch", "status", "source"],
+  "dependencies": ["hud"]
+}

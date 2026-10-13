@@ -1,0 +1,9 @@
+{
+  "name": "source-template",
+  "displayName": "HUD source template",
+  "version": "1.0.0",
+  "description": "A minimal source for the HUD: one slot, a counter. Copy it and change what it sends.",
+  "author": { "name": "Kyle Darling", "url": "https://github.com/kyledarling-io" },
+  "license": "MIT",
+  "dependencies": ["hud"]
+}
