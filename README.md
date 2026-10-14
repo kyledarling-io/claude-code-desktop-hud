@@ -78,7 +78,7 @@ callout. A training run with most of them in use:
 
 ## In the terminal
 
-The same run is drawn as text in the terminal's band above the prompt, with the urgent figure on its first line.
+In the terminal the band above the prompt is text: the same figures, in the same order, each with why it is there.
 
 <img src="docs/img/terminal-band.png" width="600" alt="The terminal band above the prompt: the run's title, progress, the figures as text with why each is shown, and the last log line">
 
@@ -93,7 +93,8 @@ GitHub Actions run). [SOURCES.md](SOURCES.md) is the guide to writing one, and
 ## What it can access
 
 The HUD reads no files, makes no network requests, starts no processes and calls no model. It reads Claude's tool
-calls for names and counts (a command's name, a file's path, a test summary), never contents or output. Claude gets
+calls for names and counts (a command's name, a file's path, the pass and fail counts a test runner prints), never
+file contents, and nothing else from a command's output. Claude gets
 one cached section of its system prompt and a one-line note beside your messages during a run. Nothing another
 plugin sends reaches Claude. `claude plugin validate .` lists every hook it handles and every call it makes.
 
